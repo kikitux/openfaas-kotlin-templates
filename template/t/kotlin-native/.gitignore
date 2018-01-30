@@ -1,0 +1,8 @@
+obj/
+bin/
+.idea/
+build/
+.gradle/
+cmake-build-*/
+*.kexe
+.dockerignore
