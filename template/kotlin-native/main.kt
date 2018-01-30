@@ -17,12 +17,19 @@ fun main(args: Array<String>) {
         memScoped {
             val bufferLength = 64 * 1024
             val buffer = allocArray<ByteVar>(bufferLength)
-            val input = fgets(buffer, bufferLength, file)?.toKString()
+            var multiLine: List<String> = emptyList()
 
-            if ( ! input.isNullOrEmpty() ){
-                val handler = Handler()
-                handler.handler(input) // String?
+            while(true){
+                val input = fgets(buffer, bufferLength, file)
+                if (input == null) break
+
+                multiLine += input.toKString()
+
             }
+
+            val handler = Handler()
+            handler.handler(multiLine)
+
         }
     } finally {
         fclose(file)
